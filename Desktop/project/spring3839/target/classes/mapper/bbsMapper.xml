@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- SQL문 모아둔 곳, SQL문 문제가 생기면 mapper.xml파일로 오면 됨. -->
+
+<mapper namespace="bbs">
+	<insert id="insert" parameterType="bbsVO">
+	<!-- bbsVO = com.mega.mvc38.BbsVO -->
+	<!-- memberVO는 mybatis-config.xml 파일의 alias="memberVO" 이랑 일치시켜줌. -->
+	<!-- ?를 #{}으로 쓰면 알아서 VO에서 get메서드로 가져옴. -->
+		insert into BBS values (#{id}, #{title}, #{content}, #{writer})
+	</insert>
+	<update id="update" parameterType="bbsVO">
+		update BBS set title = #{title} where id = #{id}
+	</update>
+	<delete id="delete" parameterType="bbsVO">
+		delete from BBS where id = #{id}
+	</delete>
+	<resultMap type="bbsVO" id="r1">
+		<result property="no" column="id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="writer" column="writer"/>
+	</resultMap>
+	<select id="select" parameterType="bbsVO" resultType="bbsVO">
+	<!-- ORM(Object RDB Mapping) -->
+	<!-- bbsVO에 컬럼명과 동일한 변수를 찾아서 set메서드로 값을 넣어줌. -->
+		select * from BBS where id = #{id}
+	</select>
+	
+	<select id="all" resultType="bbsVO">
+		select * from BBS
+	</select>
+	<!-- CRUD 4가지를 만든다. -->
+</mapper>

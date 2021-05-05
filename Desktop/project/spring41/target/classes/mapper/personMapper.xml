@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="person">
+	<insert id="insert" parameterType="personVO"><!-- memberVO는 mybatis-config.xml 파일의 alias="memberVO" 이랑 일치시켜줌. -->
+		insert into PERSON values (#{ID}, #{FIRST_NAME}, #{LAST_NAME}, #{EMAIL}, #{GENDER}, #{PHONE})
+	</insert>
+
+</mapper>

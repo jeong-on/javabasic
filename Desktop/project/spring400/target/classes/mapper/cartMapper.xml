@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+	<insert id="insert" parameterType="cartVO">
+	<!-- cartVO는 mybatis-config.xml 파일의 alias="cartVO" 이랑 일치시켜줌. -->
+		insert into CART values (#{mid}, #{pid}, #{price}, #{pcount})
+	</insert>
+	<delete id="delete" parameterType="cartVO">
+		delete from CART where mid = #{mid}
+	</delete>
+	<update id="update" parameterType="cartVO">
+		update CART set title = #{title} where mid = #{mid}
+	</update>
+	<select id="select" parameterType="cartVO">
+		select * from CART where mid = #{mid}
+	</select>
+</mapper>
